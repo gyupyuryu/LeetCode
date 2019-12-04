@@ -1,0 +1,54 @@
+"""
+class LongestSubstring():
+    def __init__(self,s):
+        self.InputString = s
+
+    def lengthOfLongestSubstring(self):
+        splitstring = [x for x in self.InputString]
+        l1 = enumerate(splitstring)
+        l2 =[]
+        l3 = []
+
+        for i, val in l1:
+            if val not in l2:
+                l2.append(val)
+            else:
+                l3.append(''.join(l2))
+                l2.clear()
+                l2.append(val)
+
+        print (max(l3, key=len))
+        return (max(len(x) for x in l3))
+
+
+sol = LongestSubstring("abcabcbb")
+sol.lengthOfLongestSubstring()
+
+"""
+class Solution:
+
+    def lengthOfLongestSubstring(self, s):
+        dicts = {}
+        maxlength = start = 0
+        for i,value in enumerate(s):
+            # i is index, value is alphabet
+            if value in dicts:
+                sums = dicts[value] + 1
+                # dictionary has key-value pair
+                if sums > start:
+                    start = sums
+            num = i - start + 1
+            if num > maxlength:
+                maxlength = num
+            dicts[value] = i
+
+        print(list(enumerate(s)))
+        for i,value in dicts.items():
+            print(i,value)
+            v = [1,2,3]
+            print(v.val)
+        return maxlength
+
+x = "abcabcbb"
+solution1 = Solution()
+solution1.lengthOfLongestSubstring(x)
